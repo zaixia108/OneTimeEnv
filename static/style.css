@@ -1,0 +1,86 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f4f8;
+  color: #333;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2 {
+  color: #007bff;
+  margin-bottom: 0.5em;
+}
+
+h1 {
+  font-size: 2em;
+}
+
+h2 {
+  font-size: 1.5em;
+}
+
+input[type="file"],
+select,
+input[type="text"],
+button {
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  display: block;
+  width: 100%;
+  box-sizing: border-box; /* Make sure padding doesn't affect width */
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+#output {
+  border: 1px solid #ddd;
+  background-color: #f9f9f9;
+  height: 300px;
+  overflow-y: scroll;
+  padding: 1rem;
+  font-family: monospace;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  white-space: pre-wrap; /* Handle line breaks */
+}
+
+#uploadStatus {
+  margin-top: 0.5rem;
+  font-style: italic;
+  color: #666;
+}
+
+/* Basic form styling */
+form {
+  margin-bottom: 2rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+/* Container to hold everything nicely */
+body > div {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem;
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Run Project</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <style>
+        #output {
+            border: 1px solid black;
+            height: 200px;
+            overflow-y: scroll;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Run Your Project</h1>
+
+        <h2>Upload File</h2>
+        <input type="file" id="fileInput">
+        <button onclick="uploadFile()">Upload</button>
+        <p id="uploadStatus"></p>
+
+        <h2>Run File</h2>
+        <label for="fileSelect">Select File:</label>
+        <select id="fileSelect" name="fileSelect">
+        </select>
+        <br>
+        <label for="arguments">Arguments:</label>
+        <input type="text" id="arguments" name="arguments">
+        <br>
+        <button onclick="runFile()">Run</button>
+
+        <h2>Output</h2>
+        <div id="output"></div>
+    </div>
+
+    <script>
+        var socket = io();
+        var outputDiv = document.getElementById('output');
+
+        socket.on('connect', function() {
+            console.log('Connected to server');
+        });
+
+        socket.on('output', function(msg) {
+            outputDiv.innerHTML += msg.data + '<br>';
+            outputDiv.scrollTop = outputDiv.scrollHeight; // Scroll to bottom
+        });
+
+        function uploadFile() {
+            var fileInput = document.getElementById('fileInput');
+            var file = fileInput.files[0];
+            var formData = new FormData();
+            formData.append('file', file);
+
+            fetch('/upload', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('uploadStatus').innerText = data.message || data.error;
+
+                // 更新文件列表
+                var fileSelect = document.getElementById('fileSelect');
+                fileSelect.innerHTML = ''; // 清空列表
+                if (data.files && data.files.length > 0) {
+                    data.files.forEach(function(file) {
+                        var option = document.createElement('option');
+                        option.value = file;
+                        option.text = file;
+                        fileSelect.add(option);
+                    });
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('uploadStatus').innerText = 'Upload failed';
+            });
+        }
+
+        function runFile() {
+            var filename = document.getElementById('fileSelect').value;
+            var arguments = document.getElementById('arguments').value;
+
+            fetch('/run', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: 'filename=' + encodeURIComponent(filename) + '&arguments=' + encodeURIComponent(arguments)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    outputDiv.innerHTML += 'Error: ' + data.error + '<br>';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                outputDiv.innerHTML += 'Error: Run failed<br>';
+            });
+        }
+    </script>
+</body>
+</html>
