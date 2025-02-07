@@ -82,7 +82,7 @@ docker run -p 8000:8000 OneTimeEnv
 
 ## 许可证
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 故障排除
 
@@ -92,12 +92,6 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ## 已知问题
 
 *   **无** - 目前没有已知问题。
-
-## 未来计划
-
-*   添加对其他类型压缩包的支持。
-*   提供更详细的错误信息。
-*   添加对环境变量的支持。
 
 ## 联系方式
 
@@ -114,5 +108,3 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ## 版本
 
 *   1.0
-
-请根据您的实际项目情况修改和完善此 `README.md` 文件。 确保它清晰、简洁、易于理解，并包含所有必要的信息。
