@@ -1,0 +1,25 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Log in to Docker Hub
+      run: docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
+    - name: Generate timestamp
+      id: timestamp
+      run: echo "::set-output name=now::$(date +%s)"
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag ${{ secrets.DOCKERHUB_USERNAME }}/onetimenv:${{ steps.timestamp.outputs.now }}
+    - name: Push the Docker image to Docker Hub
+      run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/onetimenv:${{ steps.timestamp.outputs.now }}

@@ -24,7 +24,7 @@ This Docker image provides a convenient way to run a Flask application that allo
 Clone the repository containing the `Dockerfile`, `app.py`, `deploy.sh`, `static/`, and `templates/` files. Then, build the Docker image using the following command:
 
 ```bash
-docker build -t OneTimeEnv .
+docker build -t onetimenv .
 ```
 
 ### 2. Run the Docker Container
@@ -32,7 +32,7 @@ docker build -t OneTimeEnv .
 Run the Docker container, mapping port 8000 on the host to port 8000 on the container:
 
 ```bash
-docker run -p 8000:8000 OneTimeEnv
+docker run -p 8000:8000 onetimenv
 ```
 
 ### 3. Access the Web Interface

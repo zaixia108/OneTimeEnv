@@ -24,7 +24,7 @@
 克隆包含 `Dockerfile`, `app.py`, `deploy.sh`, `static/` 和 `templates/` 文件的代码仓库。 然后，使用以下命令构建 Docker 镜像：
 
 ```bash
-docker build -t OneTimeEnv .
+docker build -t onetimenv .
 ```
 
 ### 2. 运行 Docker 容器
@@ -32,7 +32,7 @@ docker build -t OneTimeEnv .
 运行 Docker 容器，将主机上的 8000 端口映射到容器上的 8000 端口：
 
 ```bash
-docker run -p 8000:8000 OneTimeEnv
+docker run -p 8000:8000 onetimenv
 ```
 
 ### 3. 访问 Web 界面
