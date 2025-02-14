@@ -14,6 +14,9 @@ This Docker image provides a convenient way to run a Flask application that allo
 
 *   Docker is installed on your system.
 
+## Preview
+![Running Preview](screen_shot.png)
+
 ## Usage
 
 ### 1. Build the Docker Image

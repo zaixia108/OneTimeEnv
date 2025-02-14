@@ -14,6 +14,9 @@
 
 *   您的系统上已安装 Docker。
 
+## 预览
+![运行预览](screen_shot.png)
+
 ## 使用方法
 
 ### 1. 构建 Docker 镜像
